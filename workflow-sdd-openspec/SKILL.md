@@ -15,8 +15,14 @@ trigger_keywords:
   - propose
   - 需求开发
   - 工作流
+  - /初始化
+  - /提案
+  - /探索
+  - /执行
+  - /归档
+  - /状态
 
-version: 1.2.0
+version: 1.3.0
 author: 0xWabbywabbo
 ---
 
@@ -186,14 +192,29 @@ OpenSpec：/path/to/your-project/openspec/
 
 ## 🔧 支持的命令
 
-| 命令 | 作用 |
-|------|------|
-| `/opsx:init` | 初始化或切换项目 |
-| `/opsx:propose <name>` | 开始创建变更提案（分步进行） |
-| `/opsx:explore <topic>` | 探索想法，调研后再决定 |
-| `/opsx:apply` | 实现任务（逐个确认） |
-| `/opsx:archive` | 归档变更 |
-| `/opsx:status` | 查看当前变更状态 |
+### 中文命令（推荐）
+
+| 命令 | 作用 | 英文别名 |
+|------|------|---------|
+| `/初始化` | 初始化或切换项目 | `/opsx:init` |
+| `/提案 <名称>` | 开始创建变更提案 | `/opsx:propose` |
+| `/探索 <话题>` | 探索想法，调研后再决定 | `/opsx:explore` |
+| `/执行` | 实现任务（逐个确认） | `/opsx:apply` |
+| `/归档` | 归档已完成的变更 | `/opsx:archive` |
+| `/状态` | 查看当前变更状态 | `/opsx:status` |
+
+### 命令别名对照表
+
+```
+/初始化  = /opsx:init
+/提案    = /opsx:propose
+/探索    = /opsx:explore
+/执行    = /opsx:apply
+/归档    = /opsx:archive
+/状态    = /opsx:status
+```
+
+**💡 提示**: 中英文命令完全等效，可以混用。
 
 ---
 
@@ -597,11 +618,17 @@ your-project/
 
 请告诉我你想做什么：
 
-• `/opsx:propose <功能名>` - 创建新的变更提案
-• `/opsx:explore <话题>` - 先探索调研再决定
-• `/opsx:apply` - 继续实现当前变更的任务
-• `/opsx:status` - 查看当前进度
-• `/opsx:archive` - 归档已完成的变更
+📋 中文命令（推荐）：
+• /初始化          - 初始化或切换项目
+• /提案 <功能名>   - 创建新的变更提案
+• /探索 <话题>     - 先探索调研再决定
+• /执行            - 实现任务
+• /状态            - 查看当前进度
+• /归档            - 归档已完成的变更
+
+🔤 English commands:
+• /opsx:init | /opsx:propose | /opsx:explore
+• /opsx:apply | /opsx:status | /opsx:archive
 
 或者直接描述你的需求，我来帮你规划。
 ```
