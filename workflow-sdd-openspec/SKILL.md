@@ -16,7 +16,7 @@ trigger_keywords:
   - 需求开发
   - 工作流
 
-version: 1.1.0
+version: 1.2.0
 author: 0xWabbywabbo
 ---
 
@@ -28,9 +28,159 @@ author: 0xWabbywabbo
 
 > **每一步都需要用户确认，确保人机对齐。**
 
+- ✅ 启动前先确认项目目录
 - ✅ 每个文档生成后，先展示给用户确认
 - ✅ 用户可以要求修改后再继续
 - ✅ 不会一次性生成所有内容
+
+---
+
+## 🏁 启动流程（必须先执行）
+
+### 📍 Step -1: 项目目录确认
+
+**当用户首次使用或输入任何 /opsx 命令时，必须先执行此步骤。**
+
+#### 1. 检测 openspec 目录
+
+**执行命令：**
+```bash
+# 在当前工作目录查找 openspec 目录
+ls -la openspec/ 2>/dev/null || echo "NOT_FOUND"
+```
+
+#### 2. 根据检测结果处理
+
+**情况 A: 找到 openspec 目录**
+
+```
+📁 检测到 OpenSpec 项目
+
+项目路径：/path/to/your-project/
+OpenSpec 目录：/path/to/your-project/openspec/
+
+当前变更：
+├── changes/
+│   └── (进行中的变更)
+└── archive/
+    └── (已归档的变更)
+
+确认在此项目中进行开发吗？
+```
+
+**使用 ask_user_question 询问：**
+- 选项：["✅ 确认，在此项目开发", "📁 切换到其他项目", "❌ 取消"]
+
+---
+
+**情况 B: 未找到 openspec 目录**
+
+```
+⚠️ 未检测到 OpenSpec 目录
+
+当前工作目录：/path/to/current-directory/
+
+OpenSpec 需要在项目根目录创建 `openspec/` 目录来管理变更。
+
+是否在当前目录初始化 OpenSpec？
+```
+
+**使用 ask_user_question 询问：**
+- 选项：["✅ 是，在此初始化", "📁 切换到其他目录", "❓ 什么是 OpenSpec？"]
+
+---
+
+#### 3. 初始化 OpenSpec（如果需要）
+
+**如果用户选择"在此初始化"：**
+
+```bash
+# 创建 openspec 目录结构
+mkdir -p openspec/changes
+mkdir -p openspec/changes/archive
+mkdir -p openspec/main/specs
+
+# 创建 overview.md
+cat > openspec/main/overview.md << 'EOF'
+# 项目概览
+
+## 项目名称
+[项目名称]
+
+## 项目描述
+[项目描述]
+
+## 技术栈
+- [技术1]
+- [技术2]
+
+## 目录结构
+[项目目录结构说明]
+EOF
+```
+
+**然后询问用户填充项目信息：**
+
+```
+📝 请提供项目基本信息：
+
+1. **项目名称**：这个项目叫什么？
+2. **项目描述**：一句话描述项目功能
+3. **技术栈**：使用了哪些主要技术？
+```
+
+**用户回答后，更新 overview.md 并确认：**
+
+```
+✅ OpenSpec 初始化完成！
+
+📁 已创建目录结构：
+openspec/
+├── main/
+│   ├── overview.md ✅
+│   └── specs/
+└── changes/
+    └── archive/
+
+🚀 现在可以开始使用 OpenSpec 了！
+   运行 `/opsx:propose <功能名>` 创建第一个变更。
+```
+
+---
+
+#### 4. 切换项目（如果需要）
+
+**如果用户选择"切换到其他目录"：**
+
+```
+📁 请提供项目路径：
+
+输入项目的绝对路径或相对路径，例如：
+- /Users/username/projects/my-project
+- ../other-project
+- ~/Documents/work/project
+```
+
+**用户提供路径后：**
+1. 验证路径是否存在
+2. 检查该路径下是否有 openspec 目录
+3. 根据检测结果重复上述流程
+
+---
+
+### 📍 项目上下文记忆
+
+**一旦确认项目，后续操作都基于此项目：**
+
+```
+📌 当前项目上下文
+
+项目路径：/path/to/your-project/
+OpenSpec：/path/to/your-project/openspec/
+
+所有后续的 /opsx 命令都将在此项目中执行。
+如需切换项目，请运行 `/opsx:init`
+```
 
 ---
 
@@ -38,6 +188,7 @@ author: 0xWabbywabbo
 
 | 命令 | 作用 |
 |------|------|
+| `/opsx:init` | 初始化或切换项目 |
 | `/opsx:propose <name>` | 开始创建变更提案（分步进行） |
 | `/opsx:explore <topic>` | 探索想法，调研后再决定 |
 | `/opsx:apply` | 实现任务（逐个确认） |
