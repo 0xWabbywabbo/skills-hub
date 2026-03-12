@@ -7,6 +7,7 @@ A collection of AI agent skills for enhancing your development workflow.
 | Skill | Description | Version |
 |-------|-------------|---------|
 | [skills-search](./skills-search/) | Search and install skills from multiple repositories | v1.2.0 |
+| [workflow-sdd-openspec](./workflow-sdd-openspec/) | OpenSpec 规范驱动开发工作流 | v1.0.0 |
 
 ## 🚀 Quick Start
 
