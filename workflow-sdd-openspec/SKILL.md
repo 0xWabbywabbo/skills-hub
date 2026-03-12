@@ -16,13 +16,14 @@ trigger_keywords:
   - 需求开发
   - 工作流
   - /初始化
+  - /新建
   - /提案
   - /探索
   - /执行
   - /归档
   - /状态
 
-version: 1.3.0
+version: 1.4.0
 author: 0xWabbywabbo
 ---
 
@@ -197,7 +198,8 @@ OpenSpec：/path/to/your-project/openspec/
 | 命令 | 作用 | 英文别名 |
 |------|------|---------|
 | `/初始化` | 初始化或切换项目 | `/opsx:init` |
-| `/提案 <名称>` | 开始创建变更提案 | `/opsx:propose` |
+| `/新建 <名称>` | 创建变更脚手架（空目录） | `/opsx:new` |
+| `/提案 <名称>` | 快速模式：一步生成所有文档 | `/opsx:propose` |
 | `/探索 <话题>` | 探索想法，调研后再决定 | `/opsx:explore` |
 | `/执行` | 实现任务（逐个确认） | `/opsx:apply` |
 | `/归档` | 归档已完成的变更 | `/opsx:archive` |
@@ -207,12 +209,20 @@ OpenSpec：/path/to/your-project/openspec/
 
 ```
 /初始化  = /opsx:init
-/提案    = /opsx:propose
+/新建    = /opsx:new       (创建空脚手架)
+/提案    = /opsx:propose   (快速生成所有文档)
 /探索    = /opsx:explore
 /执行    = /opsx:apply
 /归档    = /opsx:archive
 /状态    = /opsx:status
 ```
+
+### `/新建` vs `/提案` 的区别
+
+| 命令 | 生成内容 | 适用场景 |
+|------|---------|---------|
+| `/新建` (`/opsx:new`) | 只创建空目录和 `.openspec.yaml` | 想手动编写文档 |
+| `/提案` (`/opsx:propose`) | 自动生成 proposal + design + tasks | 让 AI 帮你生成 ⭐ |
 
 **💡 提示**: 中英文命令完全等效，可以混用。
 
