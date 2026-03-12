@@ -11,6 +11,7 @@ workflow-sdd-openspec开发流程
 整个流程其实和正常的openspec的开发方式无异，只不过是通过聊天的方式完成开发，中间无任何敲代码的环节，相较以前在ide中开发，那是相当的丝滑了。个人感觉openclaw和sdd的结合是相当恰当的，sdd的规范化减少了智能体自由发挥的空间，进而减少了和openclaw交互的成本，这时的聊天工具的优势就发挥出来了，每个步骤都是确定性的，无需频繁查阅交互（类似vibe形式）。
 
 workflow工作流程
+
 1.AI 接受指令，和用户确认项目目录，指令我做了汉化，原厂指令也支持，只不过用手机发送指令（/opsx:new）略微麻烦。
 
 <img width="496" height="410" alt="1" src="https://github.com/user-attachments/assets/b99fb31b-72f0-40aa-b0a0-04324cfce0de" />
